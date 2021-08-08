@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(run_move_group)
+project(aubo_first_sim)
 
 # Common cmake code applied to all moveit packages
 find_package(moveit_common REQUIRED)
@@ -19,13 +19,13 @@ find_package(Boost REQUIRED COMPONENTS system)
 # further dependencies manually.
 # find_package(<dependency> REQUIRED)
 
-add_executable(run_move_group src/run_move_group.cpp)
-ament_target_dependencies(run_move_group
+add_executable(aubo_first_sim src/run_move_group.cpp)
+ament_target_dependencies(aubo_first_sim
   moveit_ros_planning_interface
   Boost
 )
 
-install(TARGETS run_move_group
+install(TARGETS aubo_first_sim
   EXPORT export_${PROJECT_NAME}
   DESTINATION lib/${PROJECT_NAME}
 )

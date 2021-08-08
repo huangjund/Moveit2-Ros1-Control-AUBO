@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
-  <name>run_move_group</name>
+  <name>aubo_first_sim</name>
   <version>2.1.0</version>
   <description>Demo launch file for running a MoveGroup setup</description>
   <maintainer email="henningkayser@picknik.ai">Henning Kayser</maintainer>
