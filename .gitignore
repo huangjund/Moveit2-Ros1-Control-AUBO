@@ -1,0 +1,7 @@
+install/
+log/
+build/
+CMAKE_DEBUG/
+.idea/
+cmake-build-debug/
+devel/
