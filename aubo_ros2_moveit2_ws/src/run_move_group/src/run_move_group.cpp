@@ -18,7 +18,7 @@ void prompt(const std::string &message)
     ;
 }
 
-static const rclcpp::Logger LOGGER = rclcpp::get_logger("move_group_demo");
+static const rclcpp::Logger LOGGER = rclcpp::get_logger("aubo_first_sim");
 
 int main(int argc, char **argv)
 {
@@ -54,6 +54,7 @@ int main(int argc, char **argv)
   std::copy(move_group.getJointModelGroupNames().begin(), move_group.getJointModelGroupNames().end(),
             std::ostream_iterator<std::string>(std::cout, ", "));
 
+  //============================================================================
   // Planning to a Pose goal
   geometry_msgs::msg::Pose target_pose1;
   target_pose1.orientation.w = 1.0;
@@ -73,6 +74,7 @@ int main(int argc, char **argv)
 
   prompt("Press 'Enter' to continue the demo");
 
+  //============================================================================
   // Moving to a pose goal
   move_group.move();
 
@@ -93,6 +95,8 @@ int main(int argc, char **argv)
   RCLCPP_INFO(LOGGER, "Plan 2 (joint space goal) %s", success ? "SUCCEEDED" : "FAILED");
 
   prompt("Press 'Enter' to continue the demo");
+
+  //============================================================================
   // Planning with Path Constraints
   moveit_msgs::msg::OrientationConstraint ocm;
   ocm.link_name = "wrist3_Link";
@@ -129,6 +133,7 @@ int main(int argc, char **argv)
   // When done with the path constraint be sure to clear it.
   move_group.clearPathConstraints();
 
+  //============================================================================
   // Cartesian Paths
   std::vector<geometry_msgs::msg::Pose> waypoints;
   waypoints.push_back(start_pose2);
@@ -161,6 +166,7 @@ int main(int argc, char **argv)
   // You can execute a trajectory like this.
   move_group.execute(trajectory);
 
+  //============================================================================
   // Adding/Removing Objects and Attaching/Detaching Objects
   moveit_msgs::msg::CollisionObject collision_object;
   collision_object.header.frame_id = move_group.getPlanningFrame();

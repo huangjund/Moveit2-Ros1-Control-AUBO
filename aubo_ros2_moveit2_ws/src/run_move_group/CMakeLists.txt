@@ -9,20 +9,27 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
   add_compile_options(-Wpedantic)
 endif()
 
+# Default to C99
+if(NOT CMAKE_C_STANDARD)
+  set(CMAKE_C_STANDARD 99)
+endif()
+
+# Default to C++14
+if(NOT CMAKE_CXX_STANDARD)
+  set(CMAKE_CXX_STANDARD 14)
+endif()
+
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(moveit_ros_planning_interface REQUIRED)
+find_package(rviz_visual_tools REQUIRED)
+find_package(rosidl_default_generators REQUIRED)  # build service file
 # This shouldn't be necessary (required by moveit_simple_controller_manager)
-find_package(rosidl_default_runtime REQUIRED)
-find_package(Boost REQUIRED COMPONENTS system)
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
 
 add_executable(aubo_first_sim src/run_move_group.cpp)
 ament_target_dependencies(aubo_first_sim
   moveit_ros_planning_interface
-  Boost
+  rviz_visual_tools
 )
 
 install(TARGETS aubo_first_sim

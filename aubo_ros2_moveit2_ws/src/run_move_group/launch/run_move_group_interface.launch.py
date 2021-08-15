@@ -38,15 +38,17 @@ def generate_launch_description():
 
     kinematics_yaml = load_yaml('aubo_i5_moveit_config', 'config/kinematics.yaml')
 
-    # MoveGroupInterface demo executable
-    run_move_group_demo = Node(name='run_move_group',
-                               package='run_move_group',
-                               executable='run_move_group',
+
+    # # MoveGroupInterface demo executable
+    run_move_group_demo = Node(name='aubo_first_sim',
+                               package='aubo_first_sim',
+                               executable='aubo_first_sim',
                                prefix='xterm -e',
                                output='screen',
                                parameters=[robot_description,
                                            robot_description_semantic,
                                            kinematics_yaml,
                                            {"use_sim_time": use_sim_time}])
+
 
     return LaunchDescription([run_move_group_demo])
