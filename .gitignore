@@ -5,3 +5,5 @@ CMAKE_DEBUG/
 .idea/
 cmake-build-debug/
 devel/
+cmake-debug/
+__pycache__/

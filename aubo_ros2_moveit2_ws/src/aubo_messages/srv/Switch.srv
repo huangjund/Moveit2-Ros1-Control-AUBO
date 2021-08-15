@@ -1,0 +1,4 @@
+int64 stamp
+char switch_state_request
+---
+bool received

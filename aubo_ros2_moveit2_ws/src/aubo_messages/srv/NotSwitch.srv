@@ -1,0 +1,5 @@
+bool request
+---
+int64 stamp
+bool left_open
+bool right_open
