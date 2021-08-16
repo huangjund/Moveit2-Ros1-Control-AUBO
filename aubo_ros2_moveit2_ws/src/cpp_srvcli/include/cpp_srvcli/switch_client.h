@@ -6,6 +6,7 @@
 #define CPP_SRVCLI_INCLUDE_CPP_SRVCLI_SWITCH_CLIENT_H_
 
 #include "rclcpp/rclcpp.hpp"
+#include <rclcpp/client.hpp>
 #include <aubo_messages/srv/not_switch.hpp>
 
 #include <chrono>
@@ -26,6 +27,8 @@ class switch_client: public rclcpp::Node{
   void send_request();
   void open_node();
 
+  // request call result
+  rclcpp::Client<aubo_messages::srv::NotSwitch>::SharedFuture result_;
  private:
   rclcpp::Client<aubo_messages::srv::NotSwitch>::SharedPtr client_;
 };
