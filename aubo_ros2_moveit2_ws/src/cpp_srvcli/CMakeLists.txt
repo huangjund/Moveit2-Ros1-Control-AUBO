@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.5)
-project(aubo_messages)
+project(cpp_srvcli)
 
 # Default to C99
 if(NOT CMAKE_C_STANDARD)
@@ -18,15 +18,26 @@ endif()
 # find dependencies
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
-find_package(rosidl_default_generators REQUIRED)  # build service file
-# uncomment the following section in order to fill in
-# further dependencies manually.
-# find_package(<dependency> REQUIRED)
+find_package(aubo_messages REQUIRED)
 
-rosidl_generate_interfaces(${PROJECT_NAME}
-        "srv/Switch.srv"
-        "srv/NotSwitch.srv"
-)
+include_directories(${rclcpp_INCLUDE_DIRS})
+include_directories(${aubo_messages_INCLUDE_DIRS})
+include_directories(include)
+
+add_executable(server src/switch_server.cpp)
+ament_target_dependencies(server
+        rclcpp
+        aubo_messages)
+
+add_executable(client src/switch_client.cpp include/cpp_srvcli/switch_client.h)
+ament_target_dependencies(client
+        rclcpp
+        aubo_messages)
+
+install(TARGETS
+        server
+        client
+        DESTINATION lib/${PROJECT_NAME})
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)

@@ -120,8 +120,8 @@ def generate_launch_description():
                                               robot_description,
                                               {"use_sim_time": use_sim_time}])
 
-    return LaunchDescription([static_tf, move_group_node, rviz_node, robot_state_publisher, fake_joint_driver_node])
-    
+    #return LaunchDescription([static_tf, move_group_node, rviz_node, robot_state_publisher, fake_joint_driver_node])
+    return LaunchDescription([static_tf, move_group_node, rviz_node, robot_state_publisher])
 
     
 
